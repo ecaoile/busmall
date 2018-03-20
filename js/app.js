@@ -146,7 +146,16 @@ randomProduct();
 function renderChart() {
   var context = document.getElementById('product-chart').getContext('2d');
 
-  var arrayOfColors = ['red', 'blue', 'green'];
+  // generate random rgb values for each bar color - see README for credit
+  var rgb = [];
+  var arrayOfColors = [];
+  for (var i in Product.allProducts) {
+    for (var j = 0; j < 3; j++) {
+      rgb[j] = (Math.floor(Math.random() * 255));
+    }
+    arrayOfColors[i] = 'rgb(' + rgb.join(',') + ')';
+    //console.log(arrayOfColors);
+  }
 
   new Chart(context, {
     type: 'bar',
