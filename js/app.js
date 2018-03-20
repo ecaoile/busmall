@@ -72,39 +72,42 @@ i =0 ; i < array.length ; i++
 
 // callback function when image is clicked:
 function randomProduct(event) {
-  if (numOfVotes > 0) {
-    for (var i = 0; i < Product.allProducts.length; i++) {
-      if (event.target.alt === Product.allProducts[i].name) {
-        Product.allProducts[i].timesSelected++;
-        console.log(event.target.alt);
-        console.log(Product.allProducts[i].timesSelected);
+  if (numOfVotes < 25) {
+    if (numOfVotes > 0) {
+      for (var i = 0; i < Product.allProducts.length; i++) {
+        if (event.target.alt === Product.allProducts[i].name) {
+          Product.allProducts[i].timesSelected++;
+          console.log(event.target.alt);
+          console.log(Product.allProducts[i].timesSelected);
+        }
       }
     }
+    // random number generator
+
+    var randomIndex1 = Math.floor(Math.random() * Product.allProducts.length);
+    var randomIndex2 = Math.floor(Math.random() * Product.allProducts.length);
+    var randomIndex3 = Math.floor(Math.random() * Product.allProducts.length);
+
+    // prevent duplicates
+    while (randomIndex1 === randomIndex2 || randomIndex1 === randomIndex3 || randomIndex2 === randomIndex3) {
+      randomIndex1 = Math.floor(Math.random() * Product.allProducts.length);
+      randomIndex2 = Math.floor(Math.random() * Product.allProducts.length);
+      randomIndex3 = Math.floor(Math.random() * Product.allProducts.length);
+    }
+    imgElement1.src = Product.allProducts[randomIndex1].filepath;
+    imgElement1.alt = Product.allProducts[randomIndex1].name;
+    imgElement2.src = Product.allProducts[randomIndex2].filepath;
+    imgElement2.alt = Product.allProducts[randomIndex2].name;
+    imgElement3.src = Product.allProducts[randomIndex3].filepath;
+    imgElement3.alt = Product.allProducts[randomIndex3].name;
+
+    Product.chosenProducts.push(Product.allProducts[randomIndex1]);
+    Product.chosenProducts.push(Product.allProducts[randomIndex2]);
+    Product.chosenProducts.push(Product.allProducts[randomIndex3]);
+    numOfVotes++;
+    console.log(numOfVotes);
+    console.log(Product.chosenProducts);
   }
-  // random number generator
-
-  var randomIndex1 = Math.floor(Math.random() * Product.allProducts.length);
-  var randomIndex2 = Math.floor(Math.random() * Product.allProducts.length);
-  var randomIndex3 = Math.floor(Math.random() * Product.allProducts.length);
-
-  while (randomIndex1 === randomIndex2 || randomIndex1 === randomIndex3 || randomIndex2 === randomIndex3) {
-    randomIndex1 = Math.floor(Math.random() * Product.allProducts.length);
-    randomIndex2 = Math.floor(Math.random() * Product.allProducts.length);
-    randomIndex3 = Math.floor(Math.random() * Product.allProducts.length);
-  }
-  imgElement1.src = Product.allProducts[randomIndex1].filepath;
-  imgElement1.alt = Product.allProducts[randomIndex1].name;
-  imgElement2.src = Product.allProducts[randomIndex2].filepath;
-  imgElement2.alt = Product.allProducts[randomIndex2].name;
-  imgElement3.src = Product.allProducts[randomIndex3].filepath;
-  imgElement3.alt = Product.allProducts[randomIndex3].name;
-
-  Product.chosenProducts.push(Product.allProducts[randomIndex1]);
-  Product.chosenProducts.push(Product.allProducts[randomIndex2]);
-  Product.chosenProducts.push(Product.allProducts[randomIndex3]);
-  numOfVotes++;
-  console.log(numOfVotes);
-
 
   //test
 
