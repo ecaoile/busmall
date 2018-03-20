@@ -106,7 +106,7 @@ function randomProduct(event) {
   console.log(numOfVotes);
 
 
-
+  //test
 
 
 
