@@ -63,7 +63,6 @@ function setupProducts() {
   new Product('image/wine-glass.jpg', 'Wine Glass');
 }
 
-
 // callback function when image is clicked:
 function randomProduct() {
   // random number generator
@@ -129,7 +128,6 @@ function handleClick(event) {
     // display the chart
     renderChart();
 
-
   }
   else {
     randomProduct();
@@ -141,6 +139,11 @@ function showResults() {
   var labelElement = document.createElement('h2');
   labelElement.textContent = 'Results';
   unorderedListElement.appendChild(labelElement);
+
+  // display a notification to the user that there is chart being displayed below
+  var seeChartElement = document.createElement('p');
+  seeChartElement.textContent = 'Please see the chart data below.';
+  sectionElement.appendChild(seeChartElement);
 
   for (var i in Product.allProducts) {
     // 1. target/create the element (li);
@@ -165,15 +168,18 @@ function renderChart() {
 
   // generate random rgb values for each bar color - see README for credit
   var productNames = [];
-  var voteData = [];
+  //var voteData = [];
   var rgb = [];
   var arrayOfColors = [];
 
+  // saving this for later in case I add another chart
+
   for (var i in Product.allProducts) {
     productNames.push(Product.allProducts[i].name);
-    var pct = Math.round(Product.allProducts[i].clicks / Product.allProducts[i].views * 100);
-    voteData.push(pct);
+    //var pct = Math.round(Product.allProducts[i].clicks / Product.allProducts[i].views * 100);
+    //voteData.push(pct);
   }
+
   for (i in Product.allProducts) {
     for (var j = 0; j < 3; j++) {
       rgb[j] = (Math.floor(Math.random() * 255));

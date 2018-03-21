@@ -48,7 +48,7 @@ ul#results {
 ul#results li {
   line-height: 2em;
 }
-div#three-pics {
+div#three-pics-container {
   margin-left:26em;
   margin-top:5%;
   margin-right:3em; 
@@ -59,7 +59,11 @@ div#three-pics {
   /*margin: 2em 2em 0 0;*/
 }
 
-div#three-pics div.card {
+div#three-pics-container p {
+  font-size: 24px;
+  line-height: 4em;
+}
+div#three-pics-container div.card {
   float: left;
 }
 
@@ -91,6 +95,10 @@ div.card img {
 
 div.card:hover {
     background-color: #e6fff3;
+}
+
+div.card:active {
+  background-color: #00ff84;
 }
 header {
   margin: auto 5%;
@@ -131,3 +139,4 @@ nav li a:hover:not(.active) {
 nav .active {
   background-color: #4CAF50;
 }
+
