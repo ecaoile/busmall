@@ -5,7 +5,7 @@ Product.allProducts = [];
 Product.lastDisplayed = [];
 Product.numOfVotes = 0;
 
-var productNames = [];
+//Product.productNames = [];
 
 var productVotes = [];
 
@@ -27,11 +27,21 @@ function Product(filepath, name) {
   this.timesDisaplyed = 0;
   this.timesSelected = 0;
   Product.allProducts.push(this);
-  productNames.push(this.name);
+  //Product.productNames.push(this.name);
 }
 
 // function for creating new instances of Product
 function setupProducts() {
+  var picsAsString = localStorage.getItem('three-pics');
+  var usablePics = JSON.parse(picsAsString);
+  if (usablePics && usablePics.length) {
+    Product.allProducts = usablePics;
+    console.log('Loaded from local storage');
+    return;
+  }
+
+  console.log('Doing it the hard way');
+
   new Product('image/bag.jpg', 'Bag');
   new Product('image/banana.jpg', 'Banana');
   new Product('image/bathroom.jpg', 'Bathroom');
@@ -116,6 +126,9 @@ function handleClick(event) {
 
     // display the chart
     renderChart();
+
+    // saves data to local storage
+    saveToLocalStorage();
   }
   else {
     randomProduct();
@@ -140,21 +153,22 @@ function updateVotes() {
     productVotes[i] = Product.allProducts[i].timesSelected;
   }
 }
-sectionElement.addEventListener('click', handleClick);
-
-// sets up the instances of Products
-setupProducts();
-
-// render an image on page load
-randomProduct();
 
 function renderChart() {
   var context = document.getElementById('product-chart').getContext('2d');
 
   // generate random rgb values for each bar color - see README for credit
+  var productNames = [];
+  var voteData = [];
   var rgb = [];
   var arrayOfColors = [];
+
   for (var i in Product.allProducts) {
+    productNames.push(Product.allProducts[i].name);
+    var pct = Math.round(Product.allProducts[i].clicks / Product.allProducts[i].views * 100);
+    voteData.push(pct);
+  }
+  for (i in Product.allProducts) {
     for (var j = 0; j < 3; j++) {
       rgb[j] = (Math.floor(Math.random() * 255));
     }
@@ -183,3 +197,17 @@ function renderChart() {
     }
   });
 }
+
+function saveToLocalStorage() {
+  // save to local storage
+  var saveProducts = JSON.stringify(Product.allProducts);
+  localStorage.setItem('three-pics', saveProducts);
+}
+
+sectionElement.addEventListener('click', handleClick);
+
+// sets up the instances of Products
+setupProducts();
+
+// render an image on page load
+randomProduct();
