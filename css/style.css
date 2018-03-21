@@ -48,10 +48,10 @@ ul#results {
 ul#results li {
   line-height: 2em;
 }
-section#three-pics {
-  margin-left:25em;
+div#three-pics {
+  margin-left:26em;
   margin-top:5%;
-  margin-right:2em; 
+  margin-right:3em; 
   /*border: 2px solid#757575;*/
   padding: 2em;
   text-align: center;
@@ -66,6 +66,7 @@ div#three-pics div.card {
 div.card {
   text-align: center;
 }
+
 /*
 img#product-pic1 {
   margin-right:3em;
@@ -79,14 +80,18 @@ div.card {
   width: 200px;
   height: 200px;
   border: 1px solid#757575;
-  padding:1em;
+  padding: 1em;
 }
 
 div.card img {
   max-width: 180px;
   max-height: 180px;
+  margin: auto;
 }
 
+div.card:hover {
+    background-color: #e6fff3;
+}
 header {
   margin: auto 5%;
 }

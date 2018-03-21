@@ -4,7 +4,6 @@
 Product.allProducts = [];
 Product.lastDisplayed = [];
 Product.numOfVotes = 0;
-
 //Product.productNames = [];
 
 var productVotes = [];
@@ -124,11 +123,13 @@ function handleClick(event) {
     // updates the votes per product for chart
     updateVotes();
 
+    // saves data to local storage
+    saveToLocalStorage();
+
     // display the chart
     renderChart();
 
-    // saves data to local storage
-    saveToLocalStorage();
+
   }
   else {
     randomProduct();
@@ -136,6 +137,11 @@ function handleClick(event) {
 }
 
 function showResults() {
+  // first have the results label appear
+  var labelElement = document.createElement('h2');
+  labelElement.textContent = 'Results';
+  unorderedListElement.appendChild(labelElement);
+
   for (var i in Product.allProducts) {
     // 1. target/create the element (li);
     var listItemElement = document.createElement('li');
@@ -187,6 +193,12 @@ function renderChart() {
       }]
     },
     options: {
+      /* This boxWidth nonsense gets rid of the box color next to the label */
+      legend: {
+        labels: {
+          boxWidth: 0,
+        }
+      },
       scales: {
         yAxes: [{
           ticks: {
