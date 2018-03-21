@@ -93,13 +93,14 @@ div.card img {
   margin: auto;
 }
 
-div.card:hover {
+div.effect:hover {
     background-color: #e6fff3;
 }
 
-div.card:active {
+div.effect:active {
   background-color: #00ff84;
 }
+
 header {
   margin: auto 5%;
 }

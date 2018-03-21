@@ -142,8 +142,14 @@ function showResults() {
 
   // display a notification to the user that there is chart being displayed below
   var seeChartElement = document.createElement('p');
-  seeChartElement.textContent = 'Please see the chart data below.';
+  seeChartElement.textContent = 'Voting has ended. Please see chart data below.';
   sectionElement.appendChild(seeChartElement);
+
+  // disable the hover and active effets for the div.card elements - got this with TA help (not intuitive)
+  var removeHoverImages = document.getElementsByClassName('effect');
+  for (var i = 0; i < 3; i++) {
+    removeHoverImages[removeHoverImages.length - 1].setAttribute('class', 'card');
+  }
 
   for (var i in Product.allProducts) {
     // 1. target/create the element (li);
