@@ -7,7 +7,7 @@ Product.numOfVotes = 0;
 
 var productNames = [];
 
-//var productVotes = [];
+var productVotes = [];
 
 // access the img elements from the DOM
 var imgElement1 = document.getElementById('product-pic1');
@@ -107,6 +107,12 @@ function handleClick(event) {
 
     // after 25 clicks, display results as a list
     showResults();
+
+    // updates the votes per product for chart
+    updateVotes();
+
+    // display the chart
+    renderChart();
   }
   else {
     randomProduct();
@@ -124,27 +130,51 @@ function showResults() {
     // 3. append the elemenet to its parent
     unorderedListElement.appendChild(listItemElement);
   }
-  // create list items to display the number of times each goat was displayed and the numbe of votes each one received
-  // 1. target/create the element
-  // 2. give it content
 }
 
+function updateVotes() {
+  for (var i in Product.allProducts) {
+    productVotes[i] = Product.allProducts[i].timesSelected;
+  }
+}
 sectionElement.addEventListener('click', handleClick);
 
 // render an image on page load
 randomProduct();
 
-/*
+
 function renderChart() {
   var context = document.getElementById('product-chart').getContext('2d');
 
-  var goatChart = newChart(context, {
-    type: bar,
-    data: [{
-      labels: 'Votes per Product',
-      data: productVotes,
-      backgroundColor: arrayOfColors,
-    }]
-  },
-)
-}*/
+  // generate random rgb values for each bar color - see README for credit
+  var rgb = [];
+  var arrayOfColors = [];
+  for (var i in Product.allProducts) {
+    for (var j = 0; j < 3; j++) {
+      rgb[j] = (Math.floor(Math.random() * 255));
+    }
+    arrayOfColors[i] = 'rgb(' + rgb.join(',') + ')';
+    //console.log(arrayOfColors);
+  }
+
+  new Chart(context, {
+    type: 'bar',
+    data: {
+      labels: productNames,
+      datasets: [{
+        label: 'Votes per Product',
+        data: productVotes,
+        backgroundColor: arrayOfColors,
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+}

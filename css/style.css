@@ -1,3 +1,119 @@
-#three-pics img {
-  max-width:100px;
+body {
+  background: #cce6ff;
+}
+
+h1 {
+  font-size:48px;
+  line-height:2em;
+}
+
+h2 {
+  font-size:36px;
+  line-height: 2em;
+}
+
+section#three-pics img {
+  max-width: 180px;
+  max-height: 180px;
+}
+
+canvas {
+  height: 400px;
+  width: 600px;
+}
+
+/*
+section > img:first-child {
+  margin-right: 5em;
+}
+
+section > img:last-child {
+  margin-left: 5em;
+}
+*/
+/*
+div#results-box {
+  border: 2px solid #757575;
+  
+  width:400px;
+  height:710px;
+}*/
+ul#results {
+  margin:-4em 0 2em 2em;
+  padding:2em;
+  list-style-type: square;
+  float: left;
+}
+
+ul#results li {
+  line-height: 2em;
+}
+div#three-pics {
+  margin-left:35%;
+  margin-top:5%;
+  margin-right:2em; 
+  border: 2px solid#757575;
+  padding: 2em;
+
+  /*margin: 2em 2em 0 0;*/
+}
+
+div#three-pics div.card {
+  float: left;
+}
+
+section#three-pics {
+  text-align: center;
+}
+img#product-pic1 {
+  margin-right:3em;
+}
+
+img#product-pic3 {
+  margin-left:3em;
+}
+
+div.card {
+  border: 1px solid#757575;
+  padding:1em;
+}
+
+header {
+  margin: auto 5%;
+}
+/*
+nav > ul li {
+  float: right;
+}*/
+/* nav menu styling - see README for credit */
+
+nav ul {
+  list-style-type: none;
+  margin: 0 71%;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  width: 20em;
+  margin-top:-4em;
+  margin-bottom:5em;
+}
+
+nav li {
+  float: left;
+}
+
+nav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+nav li a:hover:not(.active) {
+  background-color: #111;
+}
+
+nav .active {
+  background-color: #4CAF50;
 }
