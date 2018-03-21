@@ -3,19 +3,49 @@
 
 <head>
   <title>Random Goat Generator</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato|Noto+Serif|Roboto" rel="stylesheet">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-  <h1>BusMall Catalog</h1>
-  <ul id="results">
-  </ul>
-  <section id="three-pics">
-    <img id="product-pic1" src="" alt="testing" />
-    <img id="product-pic2" src="" alt="testing" />
-    <img id="product-pic3" src="" alt="testing" />
-  </section>
+  <header>
+    <div id="title">
+      <h1 id="title">BusMall Catalog</h1>
+    </div>
+    <nav>
+      <ul>
+        <li>
+          <a href="#">Home</a>
+        </li>
+        <li>
+          <a href="#" class="active">Products</a>
+        </li>
+        <li>
+          <a href="#">About</a>
+        </li>
+        <li>
+          <a href="#">Contact</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <div id="results-box">
+    <ul id="results">
+      <h2>Results</h2>
+    </ul>
+  </div>
+
+  <div id="three-pics">
+    <section id="three-pics">
+      <h2>Click your favorite picture below:</h2>
+      <img id="product-pic1" src="" alt="testing" />
+      <img id="product-pic2" src="" alt="testing" />
+      <img id="product-pic3" src="" alt="testing" />
+    </section>
+  </div>
+
   <canvas id="product-chart"></canvas>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
   <script src="js/app.js"></script>
