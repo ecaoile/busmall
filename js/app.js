@@ -7,6 +7,7 @@ Product.numOfVotes = 0;
 //Product.productNames = [];
 
 var productVotes = [];
+var productNames = [];
 
 // access the img elements from the DOM
 var imgElement1 = document.getElementById('product-pic1');
@@ -151,7 +152,7 @@ function showResults() {
     removeHoverImages[removeHoverImages.length - 1].setAttribute('class', 'card');
   }
 
-  for (var i in Product.allProducts) {
+  for (i in Product.allProducts) {
     // 1. target/create the element (li);
     var listItemElement = document.createElement('li');
 
@@ -166,6 +167,7 @@ function showResults() {
 function updateVotes() {
   for (var i in Product.allProducts) {
     productVotes[i] = Product.allProducts[i].timesSelected;
+    productNames.push(Product.allProducts[i].name);
   }
 }
 
@@ -173,20 +175,18 @@ function renderChart() {
   var context = document.getElementById('product-chart').getContext('2d');
 
   // generate random rgb values for each bar color - see README for credit
-  var productNames = [];
   //var voteData = [];
   var rgb = [];
   var arrayOfColors = [];
 
   // saving this for later in case I add another chart
-
+  /*
   for (var i in Product.allProducts) {
-    productNames.push(Product.allProducts[i].name);
     //var pct = Math.round(Product.allProducts[i].clicks / Product.allProducts[i].views * 100);
     //voteData.push(pct);
   }
-
-  for (i in Product.allProducts) {
+*/
+  for (var i in Product.allProducts) {
     for (var j = 0; j < 3; j++) {
       rgb[j] = (Math.floor(Math.random() * 255));
     }
