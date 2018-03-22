@@ -7,7 +7,6 @@ Product.numOfVotes = 0;
 //Product.productNames = [];
 
 var productVotes = [];
-var productNames = [];
 
 // access the img elements from the DOM
 var imgElement1 = document.getElementById('product-pic1');
@@ -168,7 +167,6 @@ function showResults() {
 function updateVotes() {
   for (var i in Product.allProducts) {
     productVotes[i] = Product.allProducts[i].timesSelected;
-    productNames.push(Product.allProducts[i].name);
   }
 }
 
@@ -177,17 +175,18 @@ function renderChart() {
 
   // generate random rgb values for each bar color - see README for credit
   //var voteData = [];
+  var productNames = [];
   var rgb = [];
   var arrayOfColors = [];
 
-  // saving this for later in case I add another chart
-  /*
   for (var i in Product.allProducts) {
+    productNames.push(Product.allProducts[i].name);
+    // saving this for later in case I add another chart
     //var pct = Math.round(Product.allProducts[i].clicks / Product.allProducts[i].views * 100);
     //voteData.push(pct);
   }
-*/
-  for (var i in Product.allProducts) {
+
+  for (i in Product.allProducts) {
     for (var j = 0; j < 3; j++) {
       rgb[j] = (Math.floor(Math.random() * 255));
     }
