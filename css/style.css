@@ -58,9 +58,11 @@ div#three-pics-container {
 }
 
 div#three-pics-container p {
-  font-size: 24px;
+  font-size: 32px;
   line-height: 4em;
+  color: #004d28;
 }
+
 div#three-pics-container div.card {
   float: left;
 }

@@ -145,6 +145,7 @@ function showResults() {
   var seeChartElement = document.createElement('p');
   seeChartElement.textContent = 'Voting has ended. Please see chart data below.';
   sectionElement.appendChild(seeChartElement);
+  alert('Voting has ended. Please see chart data below.');
 
   // disable the hover and active effets for the div.card elements - got this with TA help (not intuitive)
   var removeHoverImages = document.getElementsByClassName('effect');
