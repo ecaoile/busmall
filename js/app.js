@@ -171,16 +171,19 @@ function updateVotes() {
 }
 
 function renderChart() {
-  var context = document.getElementById('product-chart').getContext('2d');
+  var context1 = document.getElementById('product-chart1').getContext('2d');
+  var context2 = document.getElementById('product-chart2').getContext('2d');
 
   // generate random rgb values for each bar color - see README for credit
   //var voteData = [];
   var productNames = [];
+  var productTimesDisplayed = [];
   var rgb = [];
   var arrayOfColors = [];
 
   for (var i in Product.allProducts) {
     productNames.push(Product.allProducts[i].name);
+    productTimesDisplayed.push(Product.allProducts[i].timesDisaplyed);
     // saving this for later in case I add another chart
     //var pct = Math.round(Product.allProducts[i].clicks / Product.allProducts[i].views * 100);
     //voteData.push(pct);
@@ -194,13 +197,40 @@ function renderChart() {
     //console.log(arrayOfColors);
   }
 
-  new Chart(context, {
+  new Chart(context1, {
     type: 'bar',
     data: {
       labels: productNames,
       datasets: [{
         label: 'Votes per Product',
         data: productVotes,
+        backgroundColor: arrayOfColors,
+      }]
+    },
+    options: {
+      /* This boxWidth nonsense gets rid of the box color next to the label */
+      legend: {
+        labels: {
+          boxWidth: 0,
+        }
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+
+  new Chart(context2, {
+    type: 'horizontalBar',
+    data: {
+      labels: productNames,
+      datasets: [{
+        label: 'Times Displayed per Product',
+        data: productTimesDisplayed,
         backgroundColor: arrayOfColors,
       }]
     },
