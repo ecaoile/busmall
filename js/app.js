@@ -4,8 +4,7 @@
 Product.allProducts = [];
 Product.lastDisplayed = [];
 Product.numOfVotes = 0;
-
-var productNames = [];
+//Product.productNames = [];
 
 var productVotes = [];
 
@@ -27,11 +26,21 @@ function Product(filepath, name) {
   this.timesDisaplyed = 0;
   this.timesSelected = 0;
   Product.allProducts.push(this);
-  productNames.push(this.name);
+  //Product.productNames.push(this.name);
 }
 
 // function for creating new instances of Product
 function setupProducts() {
+  var picsAsString = localStorage.getItem('three-pics');
+  var usablePics = JSON.parse(picsAsString);
+  if (usablePics && usablePics.length) {
+    Product.allProducts = usablePics;
+    console.log('Loaded from local storage');
+    return;
+  }
+
+  console.log('Doing it the hard way');
+
   new Product('image/bag.jpg', 'Bag');
   new Product('image/banana.jpg', 'Banana');
   new Product('image/bathroom.jpg', 'Bathroom');
@@ -53,7 +62,6 @@ function setupProducts() {
   new Product('image/water-can.jpg', 'Water Can');
   new Product('image/wine-glass.jpg', 'Wine Glass');
 }
-
 
 // callback function when image is clicked:
 function randomProduct() {
@@ -114,8 +122,12 @@ function handleClick(event) {
     // updates the votes per product for chart
     updateVotes();
 
+    // saves data to local storage
+    saveToLocalStorage();
+
     // display the chart
     renderChart();
+
   }
   else {
     randomProduct();
@@ -123,6 +135,22 @@ function handleClick(event) {
 }
 
 function showResults() {
+  // first have the results label appear
+  var labelElement = document.createElement('h2');
+  labelElement.textContent = 'Results';
+  unorderedListElement.appendChild(labelElement);
+
+  // display a notification to the user that there is chart being displayed below
+  var seeChartElement = document.createElement('p');
+  seeChartElement.textContent = 'Voting has ended. Please see chart data below.';
+  sectionElement.appendChild(seeChartElement);
+
+  // disable the hover and active effets for the div.card elements - got this with TA help (not intuitive)
+  var removeHoverImages = document.getElementsByClassName('effect');
+  for (var i = 0; i < 3; i++) {
+    removeHoverImages[removeHoverImages.length - 1].setAttribute('class', 'card');
+  }
+
   for (var i in Product.allProducts) {
     // 1. target/create the element (li);
     var listItemElement = document.createElement('li');
@@ -140,21 +168,25 @@ function updateVotes() {
     productVotes[i] = Product.allProducts[i].timesSelected;
   }
 }
-sectionElement.addEventListener('click', handleClick);
-
-// sets up the instances of Products
-setupProducts();
-
-// render an image on page load
-randomProduct();
 
 function renderChart() {
   var context = document.getElementById('product-chart').getContext('2d');
 
   // generate random rgb values for each bar color - see README for credit
+  var productNames = [];
+  //var voteData = [];
   var rgb = [];
   var arrayOfColors = [];
+
+  // saving this for later in case I add another chart
+
   for (var i in Product.allProducts) {
+    productNames.push(Product.allProducts[i].name);
+    //var pct = Math.round(Product.allProducts[i].clicks / Product.allProducts[i].views * 100);
+    //voteData.push(pct);
+  }
+
+  for (i in Product.allProducts) {
     for (var j = 0; j < 3; j++) {
       rgb[j] = (Math.floor(Math.random() * 255));
     }
@@ -173,6 +205,12 @@ function renderChart() {
       }]
     },
     options: {
+      /* This boxWidth nonsense gets rid of the box color next to the label */
+      legend: {
+        labels: {
+          boxWidth: 0,
+        }
+      },
       scales: {
         yAxes: [{
           ticks: {
@@ -183,3 +221,17 @@ function renderChart() {
     }
   });
 }
+
+function saveToLocalStorage() {
+  // save to local storage
+  var saveProducts = JSON.stringify(Product.allProducts);
+  localStorage.setItem('three-pics', saveProducts);
+}
+
+sectionElement.addEventListener('click', handleClick);
+
+// sets up the instances of Products
+setupProducts();
+
+// render an image on page load
+randomProduct();

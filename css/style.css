@@ -12,11 +12,6 @@ h2 {
   line-height: 2em;
 }
 
-section#three-pics img {
-  max-width: 180px;
-  max-height: 180px;
-}
-
 canvas {
   height: 400px;
   width: 600px;
@@ -38,6 +33,11 @@ div#results-box {
   width:400px;
   height:710px;
 }*/
+
+div.card > img {
+  display: inline;
+  /*margin-right: 5em;*/
+}
 ul#results {
   margin:-4em 0 2em 2em;
   padding:2em;
@@ -48,23 +48,30 @@ ul#results {
 ul#results li {
   line-height: 2em;
 }
-div#three-pics {
-  margin-left:35%;
+div#three-pics-container {
+  margin-left:26em;
   margin-top:5%;
-  margin-right:2em; 
-  border: 2px solid#757575;
+  margin-right:3em; 
+  /*border: 2px solid#757575;*/
   padding: 2em;
+  text-align: center;
 
   /*margin: 2em 2em 0 0;*/
 }
 
-div#three-pics div.card {
+div#three-pics-container p {
+  font-size: 24px;
+  line-height: 4em;
+}
+div#three-pics-container div.card {
   float: left;
 }
 
-section#three-pics {
+div.card {
   text-align: center;
 }
+
+/*
 img#product-pic1 {
   margin-right:3em;
 }
@@ -72,10 +79,26 @@ img#product-pic1 {
 img#product-pic3 {
   margin-left:3em;
 }
-
+*/
 div.card {
+  width: 200px;
+  height: 200px;
   border: 1px solid#757575;
-  padding:1em;
+  padding: 1em;
+}
+
+div.card img {
+  max-width: 180px;
+  max-height: 180px;
+  margin: auto;
+}
+
+div.effect:hover {
+    background-color: #e6fff3;
+}
+
+div.effect:active {
+  background-color: #00ff84;
 }
 
 header {
@@ -117,3 +140,4 @@ nav li a:hover:not(.active) {
 nav .active {
   background-color: #4CAF50;
 }
+
