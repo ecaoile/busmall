@@ -81,6 +81,9 @@ div.card img {
   margin: auto;
 }
 
+div.effect {
+  transition: background .2s;
+}
 div.effect:hover {
     background-color: #e6fff3;
     cursor: pointer;
