@@ -9,12 +9,19 @@ Product.numOfVotes = 0;
 var productVotes = [];
 
 // access the img elements from the DOM
+/*
+var divElement1 = document.getElementById('card1');
+var divElement2 = document.getElementById('card2');
+var divElement3 = document.getElementById('card3');
+*/
+// access the section element from the DOM
+// NOTE: disabling sectionElement because it was causing issues with incrementing votes
+//var sectionElement = document.getElementById('three-pics');
+
 var imgElement1 = document.getElementById('product-pic1');
 var imgElement2 = document.getElementById('product-pic2');
 var imgElement3 = document.getElementById('product-pic3');
-
-// access the section element from the DOM
-var sectionElement = document.getElementById('three-pics');
+var imgElementArray = [imgElement1, imgElement2, imgElement3];
 
 // access the unordered list element from the DOM
 var unorderedListElement = document.getElementById('results');
@@ -65,40 +72,61 @@ function setupProducts() {
 
 // callback function when image is clicked:
 function randomProduct() {
+  //var randomIndexArray = [];
   // random number generator
   var randomIndex1 = Math.floor(Math.random() * Product.allProducts.length);
   var randomIndex2 = Math.floor(Math.random() * Product.allProducts.length);
   var randomIndex3 = Math.floor(Math.random() * Product.allProducts.length);
-
+  var randomIndexArray = [randomIndex1, randomIndex2, randomIndex3];
+  //console.log(randomIndexArray.length);
   // prevent duplicates
-  while (randomIndex1 === randomIndex2 || randomIndex1 === randomIndex3 || randomIndex2 === randomIndex3 || Product.lastDisplayed.includes(randomIndex1) || Product.lastDisplayed.includes(randomIndex2) || Product.lastDisplayed.includes(randomIndex3)) {
+  while (randomIndexArray[0] === randomIndexArray[1] || randomIndexArray[0] === randomIndexArray[2] || randomIndexArray[1] === randomIndexArray[2] || Product.lastDisplayed.includes(randomIndexArray[0]) || Product.lastDisplayed.includes(randomIndexArray[1]) || Product.lastDisplayed.includes(randomIndexArray[2])) {
     console.log('Duplicate caught!');
-    console.log(Product.lastDisplayed);
-    randomIndex1 = Math.floor(Math.random() * Product.allProducts.length);
-    randomIndex2 = Math.floor(Math.random() * Product.allProducts.length);
-    randomIndex3 = Math.floor(Math.random() * Product.allProducts.length);
-    //debugger;
+    //console.log(Product.lastDisplayed);
+
+    for (var i in randomIndexArray) {
+      // randomIndexArray[i] = Math.floor(Math.random() * Product.allProducts.length);
+      randomIndexArray[i] = Math.floor(Math.random() * Product.allProducts.length);
+      console.log(randomIndexArray[i]);
+      /*
+      randomIndex1 = Math.floor(Math.random() * Product.allProducts.length);
+      randomIndex2 = Math.floor(Math.random() * Product.allProducts.length);
+      randomIndex3 = Math.floor(Math.random() * Product.allProducts.length);
+      */
+      //debugger;
+    }
+  }
+  // display the 3 unique images on the screen
+
+  for (i in randomIndexArray) {
+    imgElementArray[i].src = Product.allProducts[randomIndexArray[i]].filepath;
+    imgElementArray[i].alt = Product.allProducts[randomIndexArray[i]].name;
+    Product.lastDisplayed[i] = randomIndexArray[i];
+    Product.allProducts[randomIndexArray[i]].timesDisaplyed++;
   }
 
-  // display the 3 unique images on the screen
-  imgElement1.src = Product.allProducts[randomIndex1].filepath;
-  imgElement1.alt = Product.allProducts[randomIndex1].name;
+  /*
+    imgElement1.src = Product.allProducts[randomIndex1].filepath;
+    imgElement1.alt = Product.allProducts[randomIndex1].name;
 
-  imgElement2.src = Product.allProducts[randomIndex2].filepath;
-  imgElement2.alt = Product.allProducts[randomIndex2].name;
+    imgElement2.src = Product.allProducts[randomIndex2].filepath;
+    imgElement2.alt = Product.allProducts[randomIndex2].name;
 
-  imgElement3.src = Product.allProducts[randomIndex3].filepath;
-  imgElement3.alt = Product.allProducts[randomIndex3].name;
+    imgElement3.src = Product.allProducts[randomIndex3].filepath;
+    imgElement3.alt = Product.allProducts[randomIndex3].name;
 
-  // place index values of pictures into the lastDisplayed array
-  Product.lastDisplayed[0] = randomIndex1;
-  Product.lastDisplayed[1] = randomIndex2;
-  Product.lastDisplayed[2] = randomIndex3;
+    // place index values of pictures into the lastDisplayed array
 
-  // increment the numbers of times displayed
-  Product.allProducts[randomIndex1].timesDisaplyed++;
-  Product.allProducts[randomIndex2].timesDisaplyed++;
-  Product.allProducts[randomIndex3].timesDisaplyed++;
+    Product.lastDisplayed[0] = randomIndex1;
+    Product.lastDisplayed[1] = randomIndex2;
+    Product.lastDisplayed[2] = randomIndex3;
+
+    // increment the numbers of times displayed
+
+    Product.allProducts[randomIndex1].timesDisaplyed++;
+    Product.allProducts[randomIndex2].timesDisaplyed++;
+    Product.allProducts[randomIndex3].timesDisaplyed++;
+  */
 }
 
 function handleClick(event) {
@@ -113,8 +141,11 @@ function handleClick(event) {
   }
 
   // check the click counter
-  if (Product.numOfVotes > 24) {
-    sectionElement.removeEventListener('click', handleClick);
+  if (Product.numOfVotes >= 5) {
+
+    imgElement1.removeEventListener('click', handleClick);
+    imgElement2.removeEventListener('click', handleClick);
+    imgElement3.removeEventListener('click', handleClick);
 
     // after 25 clicks, display results as a list
     showResults();
@@ -128,6 +159,8 @@ function handleClick(event) {
     // display the chart
     renderChart();
 
+    // displays bottom button to return to the top
+    displayBottomButton();
   }
   else {
     randomProduct();
@@ -135,20 +168,35 @@ function handleClick(event) {
 }
 
 function showResults() {
+  // unhide hidden stuff - voodoo magic taken from the getElementsByClass voodoo farther down
+  var hiddenStuff = document.getElementsByClassName('hidden');
+  for (var i = 0; i < 2; i++) {
+    hiddenStuff[hiddenStuff.length - 1].setAttribute('class', 'shown');
+  }
+
   // first have the results label appear
   var labelElement = document.createElement('h2');
   labelElement.textContent = 'Results';
   unorderedListElement.appendChild(labelElement);
 
+  // append a button letting user vote again (page refresh). See readme for credit.
+  var votingEndedElement = document.getElementById('voting-ended');
+  var buttonElement = document.createElement('button');
+  buttonElement.setAttribute('id', 'vote-again');
+  buttonElement.setAttribute('class', 'big-button');
+  buttonElement.setAttribute('onClick', 'window.location.reload()');
+  buttonElement.textContent = 'vote again (refresh page)';
+  votingEndedElement.appendChild(buttonElement);
+
   // display a notification to the user that there is chart being displayed below
-  var seeChartElement = document.createElement('p');
-  seeChartElement.textContent = 'Voting has ended. Please see chart data below.';
-  sectionElement.appendChild(seeChartElement);
+  var h2Element = document.createElement('h2');
+  h2Element.textContent = 'Voting has ended. Please see chart data below.';
+  votingEndedElement.appendChild(h2Element);
   alert('Voting has ended. Please see chart data below.');
 
   // disable the hover and active effets for the div.card elements - got this with TA help (not intuitive)
   var removeHoverImages = document.getElementsByClassName('effect');
-  for (var i = 0; i < 3; i++) {
+  for (i = 0; i < 3; i++) {
     removeHoverImages[removeHoverImages.length - 1].setAttribute('class', 'card');
   }
 
@@ -212,6 +260,7 @@ function renderChart() {
       legend: {
         labels: {
           boxWidth: 0,
+          fontSize: 24,
         }
       },
       scales: {
@@ -239,6 +288,7 @@ function renderChart() {
       legend: {
         labels: {
           boxWidth: 0,
+          fontSize: 24,
         }
       },
       scales: {
@@ -252,13 +302,28 @@ function renderChart() {
   });
 }
 
+function displayBottomButton() {
+  // append a button letting user return to the top
+  var returnToTopElement = document.getElementById('bottom-button');
+  var buttonElement = document.createElement('button');
+  buttonElement.setAttribute('class', 'big-button');
+  buttonElement.setAttribute('id', 'bottom-button');
+  buttonElement.setAttribute('onClick', 'window.scrollTo(0,0)');
+  // note: \u2191 means up arrow in JavaScript
+  buttonElement.textContent = '\u2191 return to top \u2191';
+  returnToTopElement.appendChild(buttonElement);
+}
 function saveToLocalStorage() {
   // save to local storage
   var saveProducts = JSON.stringify(Product.allProducts);
   localStorage.setItem('three-pics', saveProducts);
 }
-
+/*
 sectionElement.addEventListener('click', handleClick);
+*/
+imgElement1.addEventListener('click', handleClick);
+imgElement2.addEventListener('click', handleClick);
+imgElement3.addEventListener('click', handleClick);
 
 // sets up the instances of Products
 setupProducts();

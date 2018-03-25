@@ -8,3 +8,12 @@ There is a navigation bar at the top, but it is not functional yet as there is o
 random RGB color generator taken from the following URL: https://stackoverflow.com/questions/14949011/random-color-from-array
 
 Styling for nav menu taken from the following URL: https://www.w3schools.com/css/css_navbar.asp
+
+refresh button taken from the following URL:
+https://stackoverflow.com/questions/29884654/button-that-refresh-page-on-click
+
+CSS color codes taken from the following URL:
+https://www.w3schools.com/colors/colors_picker.asp
+
+Up arrow for JavaScript found from the following URL:
+https://brajeshwar.github.io/entities/

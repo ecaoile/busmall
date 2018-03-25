@@ -9,7 +9,7 @@ h1 {
 
 h2 {
   font-size:36px;
-  line-height: 2em;
+  line-height: 1.5em;
 }
 
 canvas {
@@ -17,68 +17,58 @@ canvas {
   width: 600px;
 }
 
-/*
-section > img:first-child {
-  margin-right: 5em;
-}
 
-section > img:last-child {
-  margin-left: 5em;
+div#results-box {  
+  margin-top: -3em;
+  padding: 1.5em;
+  overflow: auto;
+  width:30%;
+  height:28em;
+  float: left;
 }
-*/
 /*
-div#results-box {
-  border: 2px solid #757575;
-  
-  width:400px;
-  height:710px;
-}*/
-
 div.card > img {
   display: inline;
-  /*margin-right: 5em;*/
-}
+  padding:20px;
+}*/
 ul#results {
-  margin:-4em 0 2em 2em;
-  padding:2em;
   list-style-type: square;
   float: left;
 }
 
 ul#results li {
   line-height: 2em;
+  margin-left:1.15em;
 }
+
 div#three-pics-container {
-  margin-left:26em;
-  margin-top:5%;
-  margin-right:3em; 
-  /*border: 2px solid#757575;*/
-  padding: 2em;
   text-align: center;
 }
 
-div#three-pics-container p {
-  font-size: 32px;
-  line-height: 4em;
-  color: #004d28;
-}
-
-div#three-pics-container div.card {
-  float: left;
+section#three-pics {
+  margin-left: 17.5%;
 }
 
 div.card {
-  width: 200px;
-  height: 200px;
-  border: 1px solid#757575;
-  padding: 1em;
+  width: 15em;
+  height: 15em; 
   text-align: center;
+  margin: 1em;  
+  float: left;
 }
 
 div.card img {
-  max-width: 180px;
-  max-height: 180px;
-  margin: auto;
+  border: 2px solid#757575;
+  width: 13em;
+  height: 13em;
+  padding: 1em;
+  box-shadow: 0 2px 4px 2px #666;
+ 
+/*
+  max-width:180px;
+  max-height:180px;
+  */
+  /*margin: auto;*/
 }
 
 div.effect {
@@ -91,17 +81,14 @@ div.effect:hover {
 
 div.effect:active {
   background-color: #99ffce;
+  box-shadow: 0 .5px 1px .5px #666;
 }
 
 header {
   margin: auto 5%;
 }
-/*
-nav > ul li {
-  float: right;
-}*/
-/* nav menu styling - see README for credit */
 
+/* nav menu styling - see README for credit */
 nav ul {
   list-style-type: none;
   margin: 0 71%;
@@ -133,3 +120,55 @@ nav .active {
   background-color: #4CAF50;
 }
 
+div#voting-ended h2 {
+  color: #004d28;
+  text-align: center;
+}
+
+/* see readme for button styling credit */
+button.big-button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  margin: 1em;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #00b3b3;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #666;
+  transition: background .2s;
+}
+
+button.big-button:hover {
+  background-color: #b3ffff;
+  color: #000;
+  cursor: pointer;
+}
+
+button.big-button:active {
+background-color: #99ffce;
+box-shadow: 0 4.5px #666;
+}
+
+button#bottom-button {
+  padding: 12px 40%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+div.hidden {
+  display: none;
+}
+
+div.shown {
+  display: block;
+}
+button#vote-again {
+  margin-left:11em;
+}
