@@ -70,7 +70,6 @@ function randomProduct() {
   while (randomIndexArray[0] === randomIndexArray[1] || randomIndexArray[0] === randomIndexArray[2] || randomIndexArray[1] === randomIndexArray[2] || Product.lastDisplayed.includes(randomIndexArray[0]) || Product.lastDisplayed.includes(randomIndexArray[1]) || Product.lastDisplayed.includes(randomIndexArray[2])) {
     for (i in randomIndexArray) {
       randomIndexArray[i] = Math.floor(Math.random() * Product.allProducts.length);
-      console.log(randomIndexArray[i]);
     }
   }
 
@@ -191,7 +190,6 @@ function renderChart() {
       rgb[j] = (Math.floor(Math.random() * 255));
     }
     arrayOfColors[i] = 'rgb(' + rgb.join(',') + ')';
-    //console.log(arrayOfColors);
   }
 
   new Chart(context1, {
