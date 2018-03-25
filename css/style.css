@@ -49,14 +49,13 @@ div#three-pics-container {
 }
 
 section#three-pics {
-  margin-left: 18.5%;
+  margin-left: 22.5%;
 }
 
 div.card {
   width: 200px;
   height: 200px;
   border: 2px solid#757575;
-  padding: 1em;
   text-align: center;
   margin: 1em;
   box-shadow: 0 2px 4px 2px #666;
@@ -64,8 +63,8 @@ div.card {
 }
 
 div.card img {
-  max-width: 180px;
-  max-height: 180px;
+  width: 200px;
+  height: 200px;
 /*
   max-width:180px;
   max-height:180px;
