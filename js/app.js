@@ -61,20 +61,20 @@ function setupProducts() {
 // callback function when image is clicked:
 function randomProduct() {
   // random number generator
-  var randomIndex1 = Math.floor(Math.random() * Product.allProducts.length);
-  var randomIndex2 = Math.floor(Math.random() * Product.allProducts.length);
-  var randomIndex3 = Math.floor(Math.random() * Product.allProducts.length);
-  var randomIndexArray = [randomIndex1, randomIndex2, randomIndex3];
+  var randomIndexArray = [];
+  for (var i = 0; i < 3; i++) {
+    randomIndexArray[i] = Math.floor(Math.random() * Product.allProducts.length);
+  }
 
   // prevent duplicates
   while (randomIndexArray[0] === randomIndexArray[1] || randomIndexArray[0] === randomIndexArray[2] || randomIndexArray[1] === randomIndexArray[2] || Product.lastDisplayed.includes(randomIndexArray[0]) || Product.lastDisplayed.includes(randomIndexArray[1]) || Product.lastDisplayed.includes(randomIndexArray[2])) {
-    for (var i in randomIndexArray) {
+    for (i in randomIndexArray) {
       randomIndexArray[i] = Math.floor(Math.random() * Product.allProducts.length);
       console.log(randomIndexArray[i]);
     }
   }
-  // display the 3 unique images on the screen
 
+  // display the 3 unique images on the screen
   for (i in randomIndexArray) {
     imgElementArray[i].src = Product.allProducts[randomIndexArray[i]].filepath;
     imgElementArray[i].alt = Product.allProducts[randomIndexArray[i]].name;
