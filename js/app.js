@@ -113,7 +113,7 @@ function handleClick(event) {
   }
 
   // check the click counter
-  if (Product.numOfVotes > 24) {
+  if (Product.numOfVotes > 4) {
     sectionElement.removeEventListener('click', handleClick);
 
     // after 25 clicks, display results as a list
@@ -141,9 +141,10 @@ function showResults() {
   unorderedListElement.appendChild(labelElement);
 
   // display a notification to the user that there is chart being displayed below
-  var seeChartElement = document.createElement('p');
-  seeChartElement.textContent = 'Voting has ended. Please see chart data below.';
-  sectionElement.appendChild(seeChartElement);
+  var seeChartElement = document.getElementById('voting-ended');
+  var pElement = document.createElement('p');
+  pElement.textContent = 'Voting has ended. Please see chart data below.';
+  seeChartElement.appendChild(pElement);
   alert('Voting has ended. Please see chart data below.');
 
   // disable the hover and active effets for the div.card elements - got this with TA help (not intuitive)

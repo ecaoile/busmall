@@ -49,30 +49,27 @@ ul#results li {
   line-height: 2em;
 }
 div#three-pics-container {
-  margin-left:26em;
+  margin-left:27em;
   margin-top:5%;
-  margin-right:3em; 
+  /*margin-right:2em; */
   /*border: 2px solid#757575;*/
-  padding: 2em;
   text-align: center;
 }
 
-div#three-pics-container p {
-  font-size: 32px;
-  line-height: 4em;
-  color: #004d28;
-}
-
+/*
 div#three-pics-container div.card {
   float: left;
 }
-
+*/
 div.card {
   width: 200px;
   height: 200px;
   border: 1px solid#757575;
   padding: 1em;
   text-align: center;
+  margin: 1em;
+  float: left;
+  box-shadow: 0 3px 6px 3px #666;
 }
 
 div.card img {
@@ -91,6 +88,7 @@ div.effect:hover {
 
 div.effect:active {
   background-color: #99ffce;
+  box-shadow: 0 2px 4px 2px #666;
 }
 
 header {
@@ -133,3 +131,10 @@ nav .active {
   background-color: #4CAF50;
 }
 
+div#voting-ended p {
+  font-size: 32px;
+  line-height: 2em;
+  color: #004d28;
+  margin-top:8em;
+  text-align: center;
+}
