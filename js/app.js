@@ -9,12 +9,19 @@ Product.numOfVotes = 0;
 var productVotes = [];
 
 // access the img elements from the DOM
+/*
+var divElement1 = document.getElementById('card1');
+var divElement2 = document.getElementById('card2');
+var divElement3 = document.getElementById('card3');
+*/
+// access the section element from the DOM
+// NOTE: disabling sectionElement because it was causing issues with incrementing votes
+//var sectionElement = document.getElementById('three-pics');
+
 var imgElement1 = document.getElementById('product-pic1');
 var imgElement2 = document.getElementById('product-pic2');
 var imgElement3 = document.getElementById('product-pic3');
-
-// access the section element from the DOM
-var sectionElement = document.getElementById('three-pics');
+var imgElementArray = [imgElement1, imgElement2, imgElement3];
 
 // access the unordered list element from the DOM
 var unorderedListElement = document.getElementById('results');
@@ -65,40 +72,67 @@ function setupProducts() {
 
 // callback function when image is clicked:
 function randomProduct() {
+  //var randomIndexArray = [];
   // random number generator
   var randomIndex1 = Math.floor(Math.random() * Product.allProducts.length);
   var randomIndex2 = Math.floor(Math.random() * Product.allProducts.length);
   var randomIndex3 = Math.floor(Math.random() * Product.allProducts.length);
-
+  var randomIndexArray = [randomIndex1, randomIndex2, randomIndex3];
+  //console.log(randomIndexArray.length);
   // prevent duplicates
-  while (randomIndex1 === randomIndex2 || randomIndex1 === randomIndex3 || randomIndex2 === randomIndex3 || Product.lastDisplayed.includes(randomIndex1) || Product.lastDisplayed.includes(randomIndex2) || Product.lastDisplayed.includes(randomIndex3)) {
+  while (randomIndexArray[0] === randomIndexArray[1] || randomIndexArray[0] === randomIndexArray[2] || randomIndexArray[1] === randomIndexArray[2] || Product.lastDisplayed.includes(randomIndexArray[0]) || Product.lastDisplayed.includes(randomIndexArray[1]) || Product.lastDisplayed.includes(randomIndexArray[2])) {
     console.log('Duplicate caught!');
-    console.log(Product.lastDisplayed);
-    randomIndex1 = Math.floor(Math.random() * Product.allProducts.length);
-    randomIndex2 = Math.floor(Math.random() * Product.allProducts.length);
-    randomIndex3 = Math.floor(Math.random() * Product.allProducts.length);
-    //debugger;
+    //console.log(Product.lastDisplayed);
+
+    for (var i in randomIndexArray) {
+      // randomIndexArray[i] = Math.floor(Math.random() * Product.allProducts.length);
+      randomIndexArray[i] = Math.floor(Math.random() * Product.allProducts.length);
+      console.log(randomIndexArray[i]);
+      /*
+      randomIndex1 = Math.floor(Math.random() * Product.allProducts.length);
+      randomIndex2 = Math.floor(Math.random() * Product.allProducts.length);
+      randomIndex3 = Math.floor(Math.random() * Product.allProducts.length);
+      */
+      //debugger;
+    }
+  }
+  // display the 3 unique images on the screen
+
+  for (i in randomIndexArray) {
+    imgElementArray[i].src = Product.allProducts[randomIndexArray[i]].filepath;
+    imgElementArray[i].alt = Product.allProducts[randomIndexArray[i]].name;
   }
 
-  // display the 3 unique images on the screen
-  imgElement1.src = Product.allProducts[randomIndex1].filepath;
-  imgElement1.alt = Product.allProducts[randomIndex1].name;
+  for (i in randomIndexArray) {
+    Product.lastDisplayed[i] = randomIndexArray[i];
+  }
 
-  imgElement2.src = Product.allProducts[randomIndex2].filepath;
-  imgElement2.alt = Product.allProducts[randomIndex2].name;
+  for (i in randomIndexArray) {
+    Product.allProducts[randomIndexArray[i]].timesDisaplyed++;
+  }
 
-  imgElement3.src = Product.allProducts[randomIndex3].filepath;
-  imgElement3.alt = Product.allProducts[randomIndex3].name;
+  /*
+    imgElement1.src = Product.allProducts[randomIndex1].filepath;
+    imgElement1.alt = Product.allProducts[randomIndex1].name;
 
-  // place index values of pictures into the lastDisplayed array
-  Product.lastDisplayed[0] = randomIndex1;
-  Product.lastDisplayed[1] = randomIndex2;
-  Product.lastDisplayed[2] = randomIndex3;
+    imgElement2.src = Product.allProducts[randomIndex2].filepath;
+    imgElement2.alt = Product.allProducts[randomIndex2].name;
 
-  // increment the numbers of times displayed
-  Product.allProducts[randomIndex1].timesDisaplyed++;
-  Product.allProducts[randomIndex2].timesDisaplyed++;
-  Product.allProducts[randomIndex3].timesDisaplyed++;
+    imgElement3.src = Product.allProducts[randomIndex3].filepath;
+    imgElement3.alt = Product.allProducts[randomIndex3].name;
+
+    // place index values of pictures into the lastDisplayed array
+
+    Product.lastDisplayed[0] = randomIndex1;
+    Product.lastDisplayed[1] = randomIndex2;
+    Product.lastDisplayed[2] = randomIndex3;
+
+    // increment the numbers of times displayed
+
+    Product.allProducts[randomIndex1].timesDisaplyed++;
+    Product.allProducts[randomIndex2].timesDisaplyed++;
+    Product.allProducts[randomIndex3].timesDisaplyed++;
+  */
 }
 
 function handleClick(event) {
@@ -114,7 +148,9 @@ function handleClick(event) {
 
   // check the click counter
   if (Product.numOfVotes >= 5) {
-    sectionElement.removeEventListener('click', handleClick);
+    imgElement1.removeEventListener('click', handleClick);
+    imgElement2.removeEventListener('click', handleClick);
+    imgElement3.removeEventListener('click', handleClick);
 
     // after 25 clicks, display results as a list
     showResults();
@@ -287,8 +323,12 @@ function saveToLocalStorage() {
   var saveProducts = JSON.stringify(Product.allProducts);
   localStorage.setItem('three-pics', saveProducts);
 }
-
+/*
 sectionElement.addEventListener('click', handleClick);
+*/
+imgElement1.addEventListener('click', handleClick);
+imgElement2.addEventListener('click', handleClick);
+imgElement3.addEventListener('click', handleClick);
 
 // sets up the instances of Products
 setupProducts();

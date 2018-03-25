@@ -18,22 +18,19 @@ canvas {
 }
 
 
-div#results-box {
-  /*
-  margin-top: -2em;
-  margin-left: 1em;
-  */
-  margin: auto;
+div#results-box {  
+  margin-top: -3em;
   padding: 1.5em;
   overflow: auto;
   width:30%;
   height:28em;
   float: left;
 }
-
+/*
 div.card > img {
   display: inline;
-}
+  padding:20px;
+}*/
 ul#results {
   list-style-type: square;
   float: left;
@@ -49,27 +46,29 @@ div#three-pics-container {
 }
 
 section#three-pics {
-  margin-left: 22.5%;
+  margin-left: 17.5%;
 }
 
 div.card {
-  width: 200px;
-  height: 200px;
-  border: 2px solid#757575;
+  width: 15em;
+  height: 15em; 
   text-align: center;
-  margin: 1em;
-  box-shadow: 0 2px 4px 2px #666;
+  margin: 1em;  
   float: left;
 }
 
 div.card img {
-  width: 200px;
-  height: 200px;
+  border: 2px solid#757575;
+  width: 13em;
+  height: 13em;
+  padding: 1em;
+  box-shadow: 0 2px 4px 2px #666;
+ 
 /*
   max-width:180px;
   max-height:180px;
   */
-  margin: auto;
+  /*margin: auto;*/
 }
 
 div.effect {
