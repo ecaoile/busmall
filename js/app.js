@@ -140,12 +140,21 @@ function showResults() {
   labelElement.textContent = 'Results';
   unorderedListElement.appendChild(labelElement);
 
+  // append a button letting user vote again (page refresh). See readme for credit.
+  var votingEndedElement = document.getElementById('voting-ended');
+  var buttonElement = document.createElement('button');
+  buttonElement.setAttribute('id', 'refresh-button');
+  buttonElement.setAttribute('onClick', 'window.location.reload()');
+  buttonElement.textContent = 'vote again (refresh page)';
+  votingEndedElement.appendChild(buttonElement);
+
   // display a notification to the user that there is chart being displayed below
-  var seeChartElement = document.getElementById('voting-ended');
-  var pElement = document.createElement('p');
-  pElement.textContent = 'Voting has ended. Please see chart data below.';
-  seeChartElement.appendChild(pElement);
+  var h2Element = document.createElement('h2');
+  h2Element.textContent = 'Voting has ended. Please see chart data below.';
+  votingEndedElement.appendChild(h2Element);
   alert('Voting has ended. Please see chart data below.');
+
+
 
   // disable the hover and active effets for the div.card elements - got this with TA help (not intuitive)
   var removeHoverImages = document.getElementsByClassName('effect');
@@ -213,6 +222,7 @@ function renderChart() {
       legend: {
         labels: {
           boxWidth: 0,
+          fontSize: 24,
         }
       },
       scales: {
@@ -240,6 +250,7 @@ function renderChart() {
       legend: {
         labels: {
           boxWidth: 0,
+          fontSize: 24,
         }
       },
       scales: {

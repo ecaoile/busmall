@@ -9,7 +9,7 @@ h1 {
 
 h2 {
   font-size:36px;
-  line-height: 2em;
+  line-height: 1.5em;
 }
 
 canvas {
@@ -26,30 +26,33 @@ section > img:last-child {
   margin-left: 5em;
 }
 */
-/*
+
 div#results-box {
-  border: 2px solid #757575;
-  
+  /*padding-top: 2em;*/
+  padding: 1.25em;
+  /*top: 8em;*/
+  overflow: auto;
   width:400px;
-  height:710px;
-}*/
+  height:450px;
+  float: left;
+}
 
 div.card > img {
   display: inline;
   /*margin-right: 5em;*/
 }
 ul#results {
-  margin:-4em 0 2em 2em;
-  padding:2em;
+  /*margin:-4em 0 2em 2em;*/
   list-style-type: square;
   float: left;
 }
 
 ul#results li {
   line-height: 2em;
+  margin-left:1.15em;
 }
 div#three-pics-container {
-  margin-left:27em;
+  margin-left:28em;
   margin-top:5%;
   /*margin-right:2em; */
   /*border: 2px solid#757575;*/
@@ -64,12 +67,12 @@ div#three-pics-container div.card {
 div.card {
   width: 200px;
   height: 200px;
-  border: 1px solid#757575;
+  border: 2px solid#757575;
   padding: 1em;
   text-align: center;
   margin: 1em;
   float: left;
-  box-shadow: 0 3px 6px 3px #666;
+  box-shadow: 0 2px 4px 2px #666;
 }
 
 div.card img {
@@ -88,7 +91,7 @@ div.effect:hover {
 
 div.effect:active {
   background-color: #99ffce;
-  box-shadow: 0 2px 4px 2px #666;
+  box-shadow: 0 .5px 1px .5px #666;
 }
 
 header {
@@ -131,10 +134,37 @@ nav .active {
   background-color: #4CAF50;
 }
 
-div#voting-ended p {
-  font-size: 32px;
-  line-height: 2em;
+div#voting-ended h2 {
   color: #004d28;
-  margin-top:8em;
   text-align: center;
+}
+
+/* see readme for button styling credit */
+button#refresh-button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  margin: 1em;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #00b3b3;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #666;
+  transition: background .2s;
+
+}
+
+button#refresh-button:hover {
+  background-color: #b3ffff;
+  color: #000;
+  cursor: pointer;
+}
+
+button#refresh-button:active {
+background-color: #99ffce;
+box-shadow: 0 4.5px #666;
 }
