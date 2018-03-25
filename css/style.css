@@ -17,32 +17,21 @@ canvas {
   width: 600px;
 }
 
-/*
-section > img:first-child {
-  margin-right: 5em;
-}
-
-section > img:last-child {
-  margin-left: 5em;
-}
-*/
 
 div#results-box {
-  /*padding-top: 2em;*/
-  padding: 1.25em;
-  /*top: 8em;*/
+  margin-top: -2em;
+  margin-left: 1em;
+  padding: 1em;
   overflow: auto;
   width:400px;
-  height:450px;
+  height:500px;
   float: left;
 }
 
 div.card > img {
   display: inline;
-  /*margin-right: 5em;*/
 }
 ul#results {
-  /*margin:-4em 0 2em 2em;*/
   list-style-type: square;
   float: left;
 }
@@ -54,16 +43,9 @@ ul#results li {
 div#three-pics-container {
   margin-left:28em;
   margin-top:5%;
-  /*margin-right:2em; */
-  /*border: 2px solid#757575;*/
   text-align: center;
 }
 
-/*
-div#three-pics-container div.card {
-  float: left;
-}
-*/
 div.card {
   width: 200px;
   height: 200px;
@@ -97,12 +79,8 @@ div.effect:active {
 header {
   margin: auto 5%;
 }
-/*
-nav > ul li {
-  float: right;
-}*/
-/* nav menu styling - see README for credit */
 
+/* nav menu styling - see README for credit */
 nav ul {
   list-style-type: none;
   margin: 0 71%;
