@@ -19,12 +19,15 @@ canvas {
 
 
 div#results-box {
+  /*
   margin-top: -2em;
   margin-left: 1em;
-  padding: 1em;
+  */
+  margin: auto;
+  padding: 1.5em;
   overflow: auto;
-  width:400px;
-  height:500px;
+  width:30%;
+  height:28em;
   float: left;
 }
 
@@ -40,10 +43,13 @@ ul#results li {
   line-height: 2em;
   margin-left:1.15em;
 }
+
 div#three-pics-container {
-  margin-left:28em;
-  margin-top:5%;
   text-align: center;
+}
+
+section#three-pics {
+  margin-left: 18.5%;
 }
 
 div.card {
@@ -53,13 +59,17 @@ div.card {
   padding: 1em;
   text-align: center;
   margin: 1em;
-  float: left;
   box-shadow: 0 2px 4px 2px #666;
+  float: left;
 }
 
 div.card img {
   max-width: 180px;
   max-height: 180px;
+/*
+  max-width:180px;
+  max-height:180px;
+  */
   margin: auto;
 }
 
@@ -118,7 +128,7 @@ div#voting-ended h2 {
 }
 
 /* see readme for button styling credit */
-button#refresh-button {
+button.big-button {
   display: inline-block;
   padding: 15px 25px;
   font-size: 24px;
@@ -133,16 +143,34 @@ button#refresh-button {
   border-radius: 15px;
   box-shadow: 0 9px #666;
   transition: background .2s;
-
 }
 
-button#refresh-button:hover {
+button.big-button:hover {
   background-color: #b3ffff;
   color: #000;
   cursor: pointer;
 }
 
-button#refresh-button:active {
+button.big-button:active {
 background-color: #99ffce;
 box-shadow: 0 4.5px #666;
+}
+
+button#bottom-button {
+  padding: 12px 40%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+div.hidden {
+  display: none;
+}
+
+div.shown {
+  display: block;
+}
+button#vote-again {
+  margin-left:11em;
 }

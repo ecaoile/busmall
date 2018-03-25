@@ -31,14 +31,16 @@
     </nav>
   </header>
 
-  <div id="results-box">
-    <ul id="results">
-    </ul>
+  <div class="hidden">
+    <div id="results-box">
+      <ul id="results">
+      </ul>
+    </div>
   </div>
 
   <div id="three-pics-container">
+    <h2>Vote by clicking on your favorite picture below:</h2>
     <section id="three-pics">
-      <h2>Vote by clicking on your favorite picture below:</h2>
       <div class="card effect" id="card1">
         <img id="product-pic1" src="" alt="testing" />
       </div>
@@ -49,10 +51,14 @@
         <img id="product-pic3" src="" alt="testing" />
       </div>
     </section>
-    <div id="voting-ended"></div>
   </div>
-  <canvas id="product-chart1"></canvas>
-  <canvas id="product-chart2"></canvas>
+  <div class="hidden">
+    <div id="voting-ended"></div>
+    <canvas id="product-chart1"></canvas>
+    <canvas id="product-chart2"></canvas>
+    <div id="bottom-button"></div>
+  </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
   <script src="js/app.js"></script>
 </body>

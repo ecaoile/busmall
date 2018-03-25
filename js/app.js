@@ -113,7 +113,7 @@ function handleClick(event) {
   }
 
   // check the click counter
-  if (Product.numOfVotes > 4) {
+  if (Product.numOfVotes >= 5) {
     sectionElement.removeEventListener('click', handleClick);
 
     // after 25 clicks, display results as a list
@@ -128,6 +128,8 @@ function handleClick(event) {
     // display the chart
     renderChart();
 
+    // displays bottom button to return to the top
+    displayBottomButton();
   }
   else {
     randomProduct();
@@ -135,6 +137,12 @@ function handleClick(event) {
 }
 
 function showResults() {
+  // unhide hidden stuff - voodoo magic taken from the getElementsByClass voodoo farther down
+  var hiddenStuff = document.getElementsByClassName('hidden');
+  for (var i = 0; i < 2; i++) {
+    hiddenStuff[hiddenStuff.length - 1].setAttribute('class', 'shown');
+  }
+
   // first have the results label appear
   var labelElement = document.createElement('h2');
   labelElement.textContent = 'Results';
@@ -143,7 +151,8 @@ function showResults() {
   // append a button letting user vote again (page refresh). See readme for credit.
   var votingEndedElement = document.getElementById('voting-ended');
   var buttonElement = document.createElement('button');
-  buttonElement.setAttribute('id', 'refresh-button');
+  buttonElement.setAttribute('id', 'vote-again');
+  buttonElement.setAttribute('class', 'big-button');
   buttonElement.setAttribute('onClick', 'window.location.reload()');
   buttonElement.textContent = 'vote again (refresh page)';
   votingEndedElement.appendChild(buttonElement);
@@ -154,11 +163,9 @@ function showResults() {
   votingEndedElement.appendChild(h2Element);
   alert('Voting has ended. Please see chart data below.');
 
-
-
   // disable the hover and active effets for the div.card elements - got this with TA help (not intuitive)
   var removeHoverImages = document.getElementsByClassName('effect');
-  for (var i = 0; i < 3; i++) {
+  for (i = 0; i < 3; i++) {
     removeHoverImages[removeHoverImages.length - 1].setAttribute('class', 'card');
   }
 
@@ -264,6 +271,17 @@ function renderChart() {
   });
 }
 
+function displayBottomButton() {
+  // append a button letting user return to the top
+  var returnToTopElement = document.getElementById('bottom-button');
+  var buttonElement = document.createElement('button');
+  buttonElement.setAttribute('class', 'big-button');
+  buttonElement.setAttribute('id', 'bottom-button');
+  buttonElement.setAttribute('onClick', 'window.scrollTo(0,0)');
+  // note: \u2191 means up arrow in JavaScript
+  buttonElement.textContent = '\u2191 return to top \u2191';
+  returnToTopElement.appendChild(buttonElement);
+}
 function saveToLocalStorage() {
   // save to local storage
   var saveProducts = JSON.stringify(Product.allProducts);

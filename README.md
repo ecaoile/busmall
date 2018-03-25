@@ -14,3 +14,6 @@ https://stackoverflow.com/questions/29884654/button-that-refresh-page-on-click
 
 CSS color codes taken from the following URL:
 https://www.w3schools.com/colors/colors_picker.asp
+
+Up arrow for JavaScript found from the following URL:
+https://brajeshwar.github.io/entities/
