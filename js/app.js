@@ -101,13 +101,7 @@ function randomProduct() {
   for (i in randomIndexArray) {
     imgElementArray[i].src = Product.allProducts[randomIndexArray[i]].filepath;
     imgElementArray[i].alt = Product.allProducts[randomIndexArray[i]].name;
-  }
-
-  for (i in randomIndexArray) {
     Product.lastDisplayed[i] = randomIndexArray[i];
-  }
-
-  for (i in randomIndexArray) {
     Product.allProducts[randomIndexArray[i]].timesDisaplyed++;
   }
 
@@ -148,6 +142,7 @@ function handleClick(event) {
 
   // check the click counter
   if (Product.numOfVotes >= 5) {
+
     imgElement1.removeEventListener('click', handleClick);
     imgElement2.removeEventListener('click', handleClick);
     imgElement3.removeEventListener('click', handleClick);
