@@ -51,19 +51,20 @@ div.card {
   text-align: center;
   margin: 1em;  
   float: left;
+  box-shadow: 0 2px 4px 2px #666;
+  border: 1px solid#757575;
 }
 
 div.card img {
-  border: 2px solid#757575;
   width: 13em;
   height: 13em;
   padding: 1em;
-  box-shadow: 0 2px 4px 2px #666;
 }
 
 div.effect {
   transition: background .2s;
 }
+
 div.effect:hover {
     background-color: #e6fff3;
     cursor: pointer;

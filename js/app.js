@@ -95,7 +95,7 @@ function handleClick(event) {
   }
 
   // check the click counter
-  if (Product.numOfVotes >= 5) {
+  if (Product.numOfVotes >= 25) {
     imgElement1.removeEventListener('click', handleClick);
     imgElement2.removeEventListener('click', handleClick);
     imgElement3.removeEventListener('click', handleClick);
